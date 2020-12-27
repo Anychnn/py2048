@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2048 Game</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+<!-- 按钮触发模态框 -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	开始演示模态框
+</button>
+-->
+<!-- <div class="model-backdrop"></div> -->
+<div class="container" id="app">
+    <div class="heading">
+        <h1 class="title">2048</h1>
+        <div class="scores-container">
+            <div class="score-container">{{ conf.score }}</div>
+            <div class="best-container">{{ conf.bestScore }}</div>
+        </div>
+    </div>
+
+    <div class="above-game">
+        <p class="game-intro"><strong>2048</strong> 强化学习<br>
+            给AI加入了非法步数,所以失败逻辑为无法移动or非法步数超过100
+        </p>
+        <!-- <a class="restart-button" v-on:click="init">重新开始</a> -->
+        <a class="restart-button" v-on:click="auto_play">自动播放</a>
+        <!--        <label class='left' for="noTiles">Select the number of tiles</label>-->
+
+        <!--        <select v-on="change: changesTilesSize" v-selected="conf.size">-->
+        <!--            <option value="4">4 tiles</option>-->
+        <!--            <option value="5">5 tiles</option>-->
+        <!--            <option value="6">6 tiles</option>-->
+        <!--        </select>-->
+    </div>
+
+    <div class="game-container" style="width: 496px; height: 496px;">
+        <div class="grid-container">
+            <!-- Grid Here -->
+            <div v-for="grid in grid" class="grid-row">
+                <div v-for="grid in grid" class="grid-cell"></div>
+                <!-- <div v-repeat="grid" class="grid-cell" v-style="width: cellW + 'px',height: cellW + 'px'"></div> -->
+            </div>
+        </div>
+        <div class="tile-container" id="tile-container">
+
+            <div class="tile tile-new" v-show="!item.delete"
+                 v-bind:class="item.class" v-for="(item, index) in items"
+                 v-bind:style='item.transform'>
+                <div class="tile-inner">{{ item.value==0?"":item.value+"" }}</div>
+                <!--                <div class="tile-inner">{{ item.value }}</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body alert alert-danger" style="text-align: center">
+                游戏结束
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    确定
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script src="static/js/vue.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script src='static/js/store.js'></script>
+<script src='static/js/keys2.js'></script>
+<script src='static/js/work.js'></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
