@@ -1,4 +1,5 @@
 # 2048强化学习
+## readme包含项目图片,github须翻墙
 
 ![Image text](./desc/2048_lose.png)
 #### 软件架构
